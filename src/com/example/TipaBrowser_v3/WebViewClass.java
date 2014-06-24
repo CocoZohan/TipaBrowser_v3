@@ -31,8 +31,6 @@ public class WebViewClass extends Activity {
 
         firstPage = true;
         dbControlClass = new DBControlClass(this);
-        dbControlClass.readAllSessionsFromDB();
-        dbControlClass.readAllUrlsFromDB();
 
         webView = (WebView)findViewById(R.id.webView);
 
@@ -62,6 +60,11 @@ public class WebViewClass extends Activity {
 
         @Override
         public void onPageFinished(WebView view, String url) {
+
+        }
+
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap facIcon) {
             Log.d(LOG_TAG, url);
             if(firstPage) {
                 sessionNo = dbControlClass.findEmptySession();
