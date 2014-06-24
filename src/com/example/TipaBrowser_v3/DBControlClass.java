@@ -183,8 +183,6 @@ public class DBControlClass extends SQLiteOpenHelper {
 
     public void readAllSessionsFromDB(){
 
-        String tempPic = "";
-
         // connect to database
         SQLiteDatabase database = this.getWritableDatabase();
 
@@ -199,6 +197,35 @@ public class DBControlClass extends SQLiteOpenHelper {
                     Log.d(LOG_TAG,
                             "ID = " + cursor.getInt(idColIndex) +
                                     ", pic = " + cursor.getString(picColIndex));
+
+
+            } while (cursor.moveToNext());
+        } else {
+            Log.d(LOG_TAG, "0 rows");
+        }
+        cursor.close();
+    }
+
+    public void readAllUrlsFromDB(){
+
+        // connect to database
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        Log.d(LOG_TAG, "--- Rows in Url Table: ---");
+        Cursor cursor = database.query("url", null, null, null, null, null, null);
+
+        if(cursor.moveToFirst()){
+            int idColIndex = cursor.getColumnIndex("id");
+            int urlColIndex = cursor.getColumnIndex("url");
+            int sessionColIndex = cursor.getColumnIndex("ref_session");
+            int urlNoColIndex = cursor.getColumnIndex("url_no");
+
+            do{
+                Log.d(LOG_TAG,
+                        "ID = " + cursor.getInt(idColIndex) +
+                                ", url = " + cursor.getString(urlColIndex) +
+                                ", session = " + cursor.getString(sessionColIndex) +
+                                ", url # = " + cursor.getString(urlNoColIndex));
 
 
             } while (cursor.moveToNext());

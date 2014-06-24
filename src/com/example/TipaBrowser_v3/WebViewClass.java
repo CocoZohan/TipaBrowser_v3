@@ -31,6 +31,8 @@ public class WebViewClass extends Activity {
 
         firstPage = true;
         dbControlClass = new DBControlClass(this);
+        dbControlClass.readAllSessionsFromDB();
+        dbControlClass.readAllUrlsFromDB();
 
         webView = (WebView)findViewById(R.id.webView);
 
@@ -69,6 +71,9 @@ public class WebViewClass extends Activity {
             }
             urlNo++;
             dbControlClass.insertUrlIntoDB(url, sessionNo, urlNo);
+
+            dbControlClass.readAllSessionsFromDB();
+            dbControlClass.readAllUrlsFromDB();
         }
     }
 
