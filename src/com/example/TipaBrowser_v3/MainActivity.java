@@ -24,7 +24,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         editTextUrl = (EditText)findViewById(R.id.editText);
 
-        intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://fapl.ru/"));
+        intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + editTextUrl.getText().toString() + "/"));
 
         btnGo = (Button)findViewById(R.id.buttonGo);
         btnGo.setOnClickListener(this);
@@ -32,7 +32,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        intent.putExtra("initialUrl", "http://fapl.ru/");
+        intent.putExtra("initialUrl", editTextUrl.getText().toString());
         startActivity(intent);
     }
 }

@@ -206,6 +206,30 @@ public class DBControlClass extends SQLiteOpenHelper {
         cursor.close();
     }
 
+    public int numberOfSessionsFromDB(){
+
+        // connect to database
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        Log.d(LOG_TAG, "--- Rows in Session Table: ---");
+        Cursor cursor = database.query("session", null, null, null, null, null, null);
+
+        int count = 0;
+
+        if(cursor.moveToFirst()){
+
+            do{
+                count++;
+            } while (cursor.moveToNext());
+        } else {
+            Log.d(LOG_TAG, "0 rows");
+        }
+
+        Log.d(LOG_TAG, count + " rows");
+        cursor.close();
+        return count;
+    }
+
     public void readAllUrlsFromDB(){
 
         // connect to database

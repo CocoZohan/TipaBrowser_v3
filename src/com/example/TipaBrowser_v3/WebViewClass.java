@@ -2,6 +2,8 @@ package com.example.TipaBrowser_v3;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Picture;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +14,8 @@ import android.app.Activity;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import java.io.FileOutputStream;
 
 /**
  * Created by Dos on 24.06.2014.
@@ -69,7 +73,7 @@ public class WebViewClass extends Activity {
             if(firstPage) {
                 sessionNo = dbControlClass.findEmptySession();
                 urlNo = 0;
-                dbControlClass.insertSessionIntoDB(sessionNo, "session 1");
+                dbControlClass.insertSessionIntoDB(sessionNo, url);
                 firstPage = false;
             }
             urlNo++;
