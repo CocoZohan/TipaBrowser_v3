@@ -3,4 +3,6 @@
     <string name="app_name">TipaBrowser v3</string>
     <string name="go">Go</string>
     <string name="putUrl">write address</string>
+    <string name="btnGoToMain">♦</string>
+    <string name="btnGoToUrls">•••</string>
 </resources>

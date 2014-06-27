@@ -8,5 +8,23 @@
     <WebView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:id="@+id/webView"/>
+            android:id="@+id/webView" android:layout_weight="0.1"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" android:layout_weight="0.9">
+        <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btnGoToMain"
+                android:id="@+id/buttonGoToMain"/>
+        <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btnGoToUrls"
+                android:id="@+id/buttonGoToUrls"/>
+    </LinearLayout>
+
 </LinearLayout>

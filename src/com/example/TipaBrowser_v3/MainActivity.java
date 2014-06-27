@@ -24,14 +24,16 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         editTextUrl = (EditText)findViewById(R.id.editText);
 
-        intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + editTextUrl.getText().toString() + "/"));
-
         btnGo = (Button)findViewById(R.id.buttonGo);
         btnGo.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+
+        String address = "http://" + editTextUrl.getText().toString() + "/";
+        intent = new Intent(Intent.ACTION_VIEW, Uri.parse(address));
+
         intent.putExtra("initialUrl", editTextUrl.getText().toString());
         startActivity(intent);
     }

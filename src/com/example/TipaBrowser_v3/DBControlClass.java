@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 /**
  * Created by Dos on 24.06.2014.
  */
@@ -257,5 +259,44 @@ public class DBControlClass extends SQLiteOpenHelper {
             Log.d(LOG_TAG, "0 rows");
         }
         cursor.close();
+    }
+
+    public String[] returnUrlInSession(int sessionNo){
+
+        ArrayList<String> arrayList = new ArrayList<String>();
+        // connect to database
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        Log.d(LOG_TAG, "--- Url in Session: " + sessionNo + " ---");
+        Cursor cursor = database.query("url", null, null, null, null, null, null);
+
+        if(cursor.moveToFirst()){
+            int idColIndex = cursor.getColumnIndex("id");
+            int urlColIndex = cursor.getColumnIndex("url");
+            int sessionColIndex = cursor.getColumnIndex("ref_session");
+            int urlNoColIndex = cursor.getColumnIndex("url_no");
+
+            do{
+                if(cursor.getString(sessionColIndex).equals(sessionNo+"")){
+                    Log.d(LOG_TAG,
+                            "ID = " + cursor.getInt(idColIndex) +
+                                    ", url = " + cursor.getString(urlColIndex) +
+                                    ", session = " + cursor.getString(sessionColIndex) +
+                                    ", url # = " + cursor.getString(urlNoColIndex));
+
+                    arrayList.add(cursor.getString(urlColIndex));
+                }
+
+            } while (cursor.moveToNext());
+        } else {
+            Log.d(LOG_TAG, "0 rows");
+        }
+
+        String[] returnValues = new String[arrayList.size()];
+        returnValues = arrayList.toArray(returnValues);
+
+        cursor.close();
+
+        return returnValues;
     }
 }
